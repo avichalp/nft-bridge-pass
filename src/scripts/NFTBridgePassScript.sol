@@ -37,5 +37,21 @@ contract NFTBridgePassScript {
         console.logString(nftBridgePass.name());
         console.logString("symbol:");
         console.logString(nftBridgePass.symbol());
+
+        console.log("Balance Before:");
+        console.log(
+            nftBridgePass.balanceOf(address(this))
+        );
+
+        // If user transfers this NFT it get burned 😈
+        address user = address(123456789);
+        console.log("Balance Before (user):");
+        console.log(nftBridgePass.balanceOf(user));
+        nftBridgePass.transferFrom(address(this), user, tokenId);
+
+        console.log("Balance After:");
+        console.log(nftBridgePass.balanceOf(address(this)));
+        console.log("Balance After (user):");
+        console.log(nftBridgePass.balanceOf(user));
     }
 }

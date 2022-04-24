@@ -61,4 +61,13 @@ contract NFTBridgePass is IERC721Metadata, ERC721, INFTBridgePass {
             ""
         );
     }
+
+     function _transfer(address from, address to, uint256 tokenId)
+        internal
+        override
+    {
+        // Any attempt to `_transfer` this token will burn it
+        // because this is a 'one time use' gift card
+       _burn(tokenId);
+    }
 }
